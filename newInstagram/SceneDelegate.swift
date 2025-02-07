@@ -13,10 +13,43 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
 
     func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
-        // Use this method to optionally configure and attach the UIWindow `window` to the provided UIWindowScene `scene`.
-        // If using a storyboard, the `window` property will automatically be initialized and attached to the scene.
-        // This delegate does not imply the connecting scene or session are new (see `application:configurationForConnectingSceneSession` instead).
-        guard let _ = (scene as? UIWindowScene) else { return }
+        guard let windowScene = (scene as? UIWindowScene) else { return }
+        
+        window = UIWindow(windowScene: windowScene)
+        
+        let feedVC = UINavigationController(rootViewController: FeedViewController())
+        feedVC.tabBarItem = UITabBarItem(title: "Feed", image: UIImage(systemName: "house"), selectedImage: UIImage(systemName: "house.fill"))
+        
+        let notificationVC = UINavigationController(rootViewController: NotificationViewController())
+        notificationVC.tabBarItem = UITabBarItem(title: "Notification", image: UIImage(systemName: "bell"), selectedImage: UIImage(systemName: "bell.fill"))
+        
+        let profileVC = UINavigationController(rootViewController: ProfileViewController())
+        profileVC.tabBarItem = UITabBarItem(title: "Profile", image: UIImage(systemName: "person"), selectedImage: UIImage(systemName: "person.fill"))
+        
+        let reelsVC = UINavigationController(rootViewController: ReelsViewController())
+        reelsVC.tabBarItem = UITabBarItem(title: "Reels", image: UIImage(systemName: "film"), selectedImage: UIImage(systemName: "film.fill"))
+        
+        let searchVC = UINavigationController(rootViewController: SearchViewController())
+        searchVC.tabBarItem = UITabBarItem(title: "Search", image: UIImage(systemName: "magnifyingglass"), selectedImage: UIImage(systemName: "magnifyingglass.fill"))
+        
+        let tabBarController = UITabBarController()
+        tabBarController.viewControllers = [feedVC, searchVC, reelsVC, notificationVC, profileVC]
+        tabBarController.selectedViewController = feedVC
+        
+        let tabBarAppearance = UITabBarAppearance()
+        tabBarAppearance.configureWithOpaqueBackground()
+        tabBarAppearance.backgroundColor = .black
+        tabBarAppearance.stackedLayoutAppearance.normal.iconColor = .white
+        tabBarAppearance.stackedLayoutAppearance.selected.iconColor = .white
+        tabBarAppearance.stackedLayoutAppearance.normal.titleTextAttributes = [.foregroundColor: UIColor.white]
+        tabBarAppearance.stackedLayoutAppearance.selected.titleTextAttributes = [.foregroundColor: UIColor.white]
+        
+        tabBarController.tabBar.standardAppearance = tabBarAppearance
+        tabBarController.tabBar.scrollEdgeAppearance = tabBarAppearance
+        
+        window?.rootViewController = tabBarController
+        window?.makeKeyAndVisible()
+        
     }
 
     func sceneDidDisconnect(_ scene: UIScene) {
