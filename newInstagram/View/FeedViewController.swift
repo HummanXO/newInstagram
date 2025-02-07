@@ -79,6 +79,8 @@ class FeedViewController: UIViewController {
 
 
 extension FeedViewController: UITableViewDataSource, UITableViewDelegate {
+    
+    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return posts.count + (posts.count / 2)
     }
