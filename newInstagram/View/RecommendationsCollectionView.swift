@@ -12,7 +12,8 @@ class RecommendationsCollectionView: UIView, UICollectionViewDataSource, UIColle
 
         let collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
         collectionView.showsHorizontalScrollIndicator = false
-        collectionView.backgroundColor = .black
+        collectionView.layer.cornerRadius = 10
+        collectionView.backgroundColor = .clear
         collectionView.dataSource = self
         collectionView.delegate = self
         collectionView.register(RecommendationCell.self, forCellWithReuseIdentifier: "RecommendationCell")
@@ -106,7 +107,8 @@ class RecommendationCell: UICollectionViewCell {
     
     override init(frame: CGRect) {
         super.init(frame: frame)
-        
+        contentView.backgroundColor = .black
+        contentView.layer.cornerRadius = 10
         contentView.addSubview(exitButton)
         contentView.addSubview(imageView)
         contentView.addSubview(nameLabel)

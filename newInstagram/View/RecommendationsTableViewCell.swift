@@ -44,10 +44,10 @@ class RecommendationsTableViewCell: UITableViewCell {
             seeAllButton.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -15),
             
             recommendationsView.topAnchor.constraint(equalTo: recomendForYouLabel.bottomAnchor, constant: 10),
-            recommendationsView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor),
+            recommendationsView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 10),
             recommendationsView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor),
             recommendationsView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -10),
-            recommendationsView.heightAnchor.constraint(equalToConstant: 200)
+            recommendationsView.heightAnchor.constraint(equalToConstant: 250)
         ])
     }
 

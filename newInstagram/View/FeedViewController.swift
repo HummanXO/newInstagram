@@ -20,7 +20,19 @@ class FeedViewController: UIViewController {
         Post(name: "cristiano", avatarImage: "ronaldo_avatar", image: "ronaldo_post", description: "Merry Christmas, everyone! 🎄"),
         Post(name: "cristiano", avatarImage: "ronaldo_avatar", image: "ronaldo_post", description: "Merry Christmas, everyone! 🎄"),
     ]
-
+    
+    private let refreshControl : UIRefreshControl = {
+        let refreshControl = UIRefreshControl()
+        refreshControl.tintColor = .white
+        return refreshControl
+    }()
+    
+    @objc private func refreshData() {
+        _ = Timer.scheduledTimer(withTimeInterval: 2, repeats: false) { _ in
+            self.refreshControl.endRefreshing()
+        }
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         createTableView()
@@ -29,6 +41,8 @@ class FeedViewController: UIViewController {
         tableView.delegate = self
         let storiesView = StoriesCollectionView(frame: CGRect(x: 0, y: 0, width: view.frame.width, height: 80))
         tableView.tableHeaderView = storiesView
+        tableView.refreshControl = refreshControl
+        refreshControl.addTarget(self, action: #selector(refreshData), for: .valueChanged)
         tableView.register(FeedTableViewCell.self, forCellReuseIdentifier: identifier)
         tableView.register(RecommendationsTableViewCell.self, forCellReuseIdentifier: RecommendationsTableViewCell.identifier)
         
