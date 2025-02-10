@@ -13,18 +13,20 @@ class ProfileDataCell: UITableViewCell {
         let stackView = UIStackView()
         stackView.axis = .horizontal
         stackView.distribution = .fill
-        stackView.spacing = 8
+        stackView.spacing = 50
         return stackView
     }()
     
     let profileImageView: UIImageView = {
         let imageView = UIImageView()
         imageView.contentMode = .scaleAspectFill
-        imageView.layer.cornerRadius = 40
+        imageView.layer.cornerRadius = 50
         imageView.clipsToBounds = true
-        imageView.heightAnchor.constraint(equalToConstant: 80).isActive = true
-        imageView.widthAnchor.constraint(equalToConstant: 80).isActive = true
+        imageView.heightAnchor.constraint(equalToConstant: 100).isActive = true
+        imageView.widthAnchor.constraint(equalToConstant: 100).isActive = true
         imageView.image = UIImage(named: "elonMusk")
+        imageView.layer.borderWidth = 2
+        imageView.layer.borderColor = UIColor.orange.cgColor
         return imageView
     }()
     
@@ -38,7 +40,7 @@ class ProfileDataCell: UITableViewCell {
     
     let postsLabel: UILabel = {
         let label = UILabel()
-        label.font = UIFont.systemFont(ofSize: 14, weight: .regular)
+        label.font = UIFont.systemFont(ofSize: 16, weight: .bold)
         label.textColor = .systemGray6
         label.text = "100\nposts"
         label.numberOfLines = 0
@@ -48,7 +50,7 @@ class ProfileDataCell: UITableViewCell {
     
     let followersLabel: UILabel = {
         let label = UILabel()
-        label.font = UIFont.systemFont(ofSize: 14, weight: .regular)
+        label.font = UIFont.systemFont(ofSize: 16, weight: .bold)
         label.textColor = .systemGray6
         label.text = "100k\nfollowers"
         label.textAlignment = .center
@@ -58,12 +60,19 @@ class ProfileDataCell: UITableViewCell {
     
     let followingLabel: UILabel = {
         let label = UILabel()
-        label.font = UIFont.systemFont(ofSize: 14, weight: .regular)
+        label.font = UIFont.systemFont(ofSize: 16, weight: .bold)
         label.textColor = .systemGray6
         label.text = "10k\nfollowing"
         label.textAlignment = .center
         label.numberOfLines = 0
         return label
+    }()
+    
+    let nameDescriptionStackView: UIStackView = {
+        let stackView = UIStackView()
+        stackView.axis = .vertical
+        stackView.spacing = 4
+        return stackView
     }()
     
     let nameLabel: UILabel = {
@@ -74,11 +83,19 @@ class ProfileDataCell: UITableViewCell {
         return label
     }()
     
+    let jobLabel: UILabel = {
+        let label = UILabel()
+        label.font = UIFont.systemFont(ofSize: 14, weight: .regular)
+        label.textColor = .systemGray
+        label.text = "Entrepreneur"
+        return label
+    }()
+    
     let descriptionLabel: UILabel = {
         let label = UILabel()
         label.font = UIFont.systemFont(ofSize: 14, weight: .regular)
         label.numberOfLines = 0
-        label.textColor = .systemGray6
+        label.textColor = .white
         label.text = "CEO of Tesla, SpaceX, and Neuralink"
         return label
     }()
@@ -98,7 +115,7 @@ class ProfileDataCell: UITableViewCell {
         button.backgroundColor = .systemBlue
         button.tintColor = .white
         button.widthAnchor.constraint(equalToConstant: 100).isActive = true
-        button.heightAnchor.constraint(equalToConstant: 44).isActive = true
+        button.heightAnchor.constraint(equalToConstant: 32).isActive = true
         button.setTitleColor(.white, for: .normal)
         return button
     }()
@@ -107,7 +124,9 @@ class ProfileDataCell: UITableViewCell {
         let button = UIButton(type: .system)
         button.setTitle("Message", for: .normal)
         button.layer.cornerRadius = 5
-        button.backgroundColor = .systemGray
+        button.backgroundColor = .black
+        button.layer.borderWidth = 1
+        button.layer.borderColor = UIColor.systemGray.cgColor
         button.tintColor = .white
         button.widthAnchor.constraint(equalToConstant: 100).isActive = true
         button.heightAnchor.constraint(equalToConstant: 44).isActive = true
@@ -136,9 +155,12 @@ class ProfileDataCell: UITableViewCell {
         statsStackView.addArrangedSubview(followersLabel)
         statsStackView.addArrangedSubview(followingLabel)
         
-        mainStackView.addArrangedSubview(nameLabel)
-        mainStackView.addArrangedSubview(descriptionLabel)
+        mainStackView.addArrangedSubview(nameDescriptionStackView)
         mainStackView.addArrangedSubview(buttonsStackView)
+        
+        nameDescriptionStackView.addArrangedSubview(nameLabel)
+        nameDescriptionStackView.addArrangedSubview(jobLabel)
+        nameDescriptionStackView.addArrangedSubview(descriptionLabel)
         
         buttonsStackView.addArrangedSubview(followButton)
         buttonsStackView.addArrangedSubview(messageButton)

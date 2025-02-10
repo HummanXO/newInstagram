@@ -34,7 +34,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         
         let tabBarController = UITabBarController()
         tabBarController.viewControllers = [feedVC, searchVC, reelsVC, notificationVC, profileVC]
-        tabBarController.selectedViewController = feedVC
+        tabBarController.selectedViewController = profileVC
         
         let tabBarAppearance = UITabBarAppearance()
         tabBarAppearance.configureWithOpaqueBackground()
